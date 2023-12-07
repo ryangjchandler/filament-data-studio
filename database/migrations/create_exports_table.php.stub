@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('easy_export_exports', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('owner_id')->index();
+            $table->string('name');
+            $table->longText('columns')->nullable();
+            $table->longText('filters')->nullable();
+            $table->bigInteger('total_rows')->nullable();
+            $table->bigInteger('rows')->nullable();
+            $table->timestamp('finished_at')->nullable();
+            $table->timestamps();
+        });
+    }
+};

@@ -132,6 +132,10 @@ class EasyExportServiceProvider extends PackageServiceProvider
      */
     protected function getMigrations(): array
     {
-        return [];
+        return [
+            'create_exports_table',
+            'add_disk_columns_to_exports_table',
+            'add_panel_id_to_exports_table',
+        ];
     }
 }

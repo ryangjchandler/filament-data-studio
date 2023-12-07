@@ -8,12 +8,8 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('filament_easy_export_table', function (Blueprint $table) {
-            $table->id();
-
-            // add fields
-
-            $table->timestamps();
+        Schema::table('easy_export_exports', function (Blueprint $table) {
+            $table->string('panel_id')->after('page_class')->nullable();
         });
     }
 };

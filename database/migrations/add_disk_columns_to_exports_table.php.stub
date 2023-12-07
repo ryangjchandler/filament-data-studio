@@ -1,0 +1,19 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::table('easy_export_exports', function (Blueprint $table) {
+            $table->after('rows', function (Blueprint $table) {
+                $table->string('disk')->nullable();
+                $table->string('directory')->nullable();
+                $table->string('page_class');
+            });
+        });
+    }
+};
