@@ -136,6 +136,7 @@ class EasyExportServiceProvider extends PackageServiceProvider
             'create_exports_table',
             'add_disk_columns_to_exports_table',
             'add_panel_id_to_exports_table',
+            'add_tab_to_exports_table',
         ];
     }
 }

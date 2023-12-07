@@ -11,6 +11,7 @@ use Filament\Forms\Components\Wizard\Step;
 use Filament\Notifications\Actions\Action as NotificationAction;
 
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
 use Filament\Tables\Actions\Action as BaseAction;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use RyanChandler\EasyExport\Jobs\ProcessExport;
 use RyanChandler\EasyExport\Models\Export;
+use RyanChandler\EasyExport\Resources\ExportResource;
 
 class ExportAction extends BaseAction
 {
@@ -49,13 +51,13 @@ class ExportAction extends BaseAction
                 ->statePath('filters'),
         ]);
 
-        $this->fillForm(function (Table $table): array {
+        $this->fillForm(function (ExportAction $action, Table $table): array {
             $pluralModelLabel = $table->getPluralModelLabel();
             $columns = array_values(Arr::map($table->getColumns(), fn (Column $column) => $column->getName()));
             $filters = $table->getFiltersForm()->getState();
 
             return [
-                'name' => sprintf('%s - %s', Str::headline($pluralModelLabel), now()->format('Y-m-d H:i:s')),
+                'name' => $action->getActiveTableTab() ? sprintf('%s (%s) - %s', Str::headline($pluralModelLabel), $action->getActiveTableTabLabel(), now()->format('Y-m-d H:i:s')) : sprintf('%s - %s', Str::headline($pluralModelLabel), now()->format('Y-m-d H:i:s')),
                 'columns' => $columns,
                 'filters' => $filters,
             ];
@@ -78,6 +80,7 @@ class ExportAction extends BaseAction
                 'name' => $data['name'],
                 'columns' => $data['columns'],
                 'filters' => $data['filters'],
+                'tab' => $action->getActiveTableTab(),
                 'disk' => $action->getDisk(),
                 'directory' => $action->getDirectory(),
                 'page_class' => $action->getTable()->getLivewire()::class,
@@ -99,7 +102,8 @@ class ExportAction extends BaseAction
                         ->button()
                         ->size(ActionSize::Small)
                         ->label('View progress')
-                        ->color('gray'),
+                        ->color('gray')
+                        ->url(ExportResource::getUrl('index')),
                 ])
                 ->send();
         });
@@ -127,6 +131,28 @@ class ExportAction extends BaseAction
     public function getDirectory(): ?string
     {
         return $this->directory;
+    }
+
+    protected function getActiveTableTab(): ?string
+    {
+        $livewire = $this->getLivewire();
+
+        if ($livewire instanceof ListRecords) {
+            return $livewire->activeTab;
+        }
+
+        return null;
+    }
+
+    protected function getActiveTableTabLabel(): ?string
+    {
+        $tab = $this->getActiveTableTab();
+
+        if (! $tab) {
+            return null;
+        }
+
+        return $this->getLivewire()->generateTabLabel($tab);
     }
 
     protected function getToggleableColumnOptions(): array

@@ -6,6 +6,7 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Illuminate\Support\Facades\Route;
 use RyanChandler\EasyExport\Http\Controllers\DownloadController;
+use RyanChandler\EasyExport\Resources\ExportResource;
 
 class EasyExportPlugin implements Plugin
 {
@@ -22,7 +23,10 @@ class EasyExportPlugin implements Plugin
             ->authenticatedRoutes(function () {
                 Route::get('/easy-export/{export}/download', DownloadController::class)
                     ->name('easy-export.download');
-            });
+            })
+            ->resources([
+                ExportResource::class,
+            ]);
     }
 
     public function boot(Panel $panel): void

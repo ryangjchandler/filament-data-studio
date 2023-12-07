@@ -28,6 +28,6 @@ class Export extends Model
 
     public function progress(): Attribute
     {
-        return Attribute::get(fn () => ($this->rows / $this->total_rows) * 100);
+        return Attribute::get(fn () => $this->total_rows ? ($this->rows / $this->total_rows) * 100 : 0);
     }
 }
