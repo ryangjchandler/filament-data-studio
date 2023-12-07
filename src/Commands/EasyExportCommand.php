@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace RyanChandler\EasyExport\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class EasyExportCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-easy-export';
 
     public $description = 'My command';
 
