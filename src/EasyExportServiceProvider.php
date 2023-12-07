@@ -20,30 +20,17 @@ class EasyExportServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'filament-easy-export';
 
-    public static string $viewNamespace = 'filament-easy-export';
+    public static string $viewNamespace = 'easy-export';
 
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package->name(static::$name)
             ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
-                    ->publishConfigFile()
                     ->publishMigrations()
-                    ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('ryangjchandler/filament-easy-export');
+                    ->askToRunMigrations();
             });
-
-        $configFileName = $package->shortName();
-
-        if (file_exists($package->basePath("/../config/{$configFileName}.php"))) {
-            $package->hasConfigFile();
-        }
 
         if (file_exists($package->basePath('/../database/migrations'))) {
             $package->hasMigrations($this->getMigrations());
@@ -103,8 +90,8 @@ class EasyExportServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('filament-easy-export', __DIR__ . '/../resources/dist/components/filament-easy-export.js'),
-            Css::make('filament-easy-export-styles', __DIR__ . '/../resources/dist/filament-easy-export.css'),
-            Js::make('filament-easy-export-scripts', __DIR__ . '/../resources/dist/filament-easy-export.js'),
+            // Css::make('filament-easy-export-styles', __DIR__ . '/../resources/dist/filament-easy-export.css'),
+            // Js::make('filament-easy-export-scripts', __DIR__ . '/../resources/dist/filament-easy-export.js'),
         ];
     }
 
@@ -113,9 +100,7 @@ class EasyExportServiceProvider extends PackageServiceProvider
      */
     protected function getCommands(): array
     {
-        return [
-            EasyExportCommand::class,
-        ];
+        return [];
     }
 
     /**
@@ -147,8 +132,6 @@ class EasyExportServiceProvider extends PackageServiceProvider
      */
     protected function getMigrations(): array
     {
-        return [
-            'create_filament-easy-export_table',
-        ];
+        return [];
     }
 }
