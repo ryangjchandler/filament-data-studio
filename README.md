@@ -52,6 +52,31 @@ public static function table(Table $table): Table
 
 Open up the resource inside of your panel and start exporting data!
 
+### Using a custom `Export` model
+
+If you wish to change the `Export` model and extend it with your own columns, you can do this by creating a model of your own that extends the base `Export` model and then configuring the plugin to use the new model.
+
+```php
+use RyanChandler\DataStudio\Models\Export as BaseExport;
+
+class Export extends BaseExport
+{
+    //
+}
+```
+
+Inside of your `PanelProvider`:
+
+```php
+use App\Models\Export;
+
+$panel
+    ->plugin(
+        DataStudioPlugin::make()
+            ->exportModelClass(Export::class)
+    );
+```
+
 ## Testing
 
 ```bash
