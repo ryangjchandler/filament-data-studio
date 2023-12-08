@@ -43,12 +43,11 @@ class ExportAction extends BaseAction
 
         $this->fillForm(function (ExportAction $action, Table $table): array {
             $pluralModelLabel = $table->getPluralModelLabel();
-            $columns = array_values(Arr::map($table->getColumns(), fn (Column $column) => $column->getName()));
             $filters = $table->getFiltersForm()->getRawState();
 
             return [
                 'name' => $action->getActiveTableTab() ? sprintf('%s (%s) - %s', Str::headline($pluralModelLabel), $action->getActiveTableTabLabel(), now()->format('Y-m-d H:i:s')) : sprintf('%s - %s', Str::headline($pluralModelLabel), now()->format('Y-m-d H:i:s')),
-                'columns' => $columns,
+                'columns' => $action->getVisibleColumns(),
                 'filters' => $filters,
             ];
         });
@@ -120,6 +119,20 @@ class ExportAction extends BaseAction
     public function getDirectory(): ?string
     {
         return $this->directory;
+    }
+
+    protected function getVisibleColumns(): array
+    {
+        $columns = $this->getTable()->getColumns();
+        $visible = [];
+
+        foreach ($columns as $column) {
+            if (!$column->isToggleable() || ! $column->isToggledHidden()) {
+                $visible[] = $column->getName();
+            }
+        }
+
+        return $visible;
     }
 
     protected function getActiveTableTab(): ?string
