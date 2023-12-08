@@ -1,4 +1,4 @@
-# Zero configuration CSV exports for your Filament resources.
+# Low configuration exports and data analysis for Filament.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ryangjchandler/filament-easy-export.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-easy-export)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/ryangjchandler/filament-easy-export/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ryangjchandler/filament-easy-export/actions?query=workflow%3Arun-tests+branch%3Amain)
