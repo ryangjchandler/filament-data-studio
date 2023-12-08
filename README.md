@@ -21,7 +21,36 @@ php artisan filament-data-studio:install
 
 ## Usage
 
-Watch [the introduction video]() to learn how Data Studio works.
+Register the plugin on your `Panel`.
+
+```php
+use RyanChandler\DataStudio\DataStudioPlugin;
+
+$panel
+    ->plugin(DataStudioPlugin::make());
+```
+
+Add the `ExportAction` to one of your `Resource` tables.
+
+```php
+use RyanChandler\DataStudio\Actions\ExportAction;
+
+public static function table(Table $table): Table
+{
+    return $table
+        ->columns([
+            // ...
+        ])
+        ->filters([
+            // ...
+        ])
+        ->headerActions([
+            ExportAction::make(),
+        ]);
+}
+```
+
+Open up the resource inside of your panel and start exporting data!
 
 ## Testing
 
