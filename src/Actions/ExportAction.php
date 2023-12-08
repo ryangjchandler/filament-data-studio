@@ -82,8 +82,7 @@ class ExportAction extends BaseAction
             Notification::make()
                 ->title('Export started.')
                 ->body(sprintf(<<<'HTML'
-                Export <span class="font-medium">"%s"</span> has started and will be generated in the background.<br>
-                You can use the link below to track the progress of your export.
+                Export <span class="font-medium">"%s"</span> has started and will be generated in the background.
                 HTML, $data['name']))
                 ->duration(7500)
                 ->success()
