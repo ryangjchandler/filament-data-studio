@@ -9,14 +9,13 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use RyanChandler\DataStudio\DataStudioPlugin;
 use RyanChandler\DataStudio\Models\Export;
 use RyanChandler\DataStudio\Resources\ExportResource\ManageExports;
 use RyanChandler\FilamentProgressColumn\ProgressColumn;
 
 class ExportResource extends Resource
 {
-    protected static ?string $model = Export::class;
-
     protected static ?string $path = 'data-studio/exports';
 
     protected static ?string $navigationGroup = 'Data Studio';
@@ -54,5 +53,10 @@ class ExportResource extends Resource
         return [
             'index' => ManageExports::route('/'),
         ];
+    }
+
+    public static function getModel(): string
+    {
+        return DataStudioPlugin::get()->getExportModel()::class;
     }
 }

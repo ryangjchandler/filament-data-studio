@@ -3,6 +3,7 @@
 namespace RyanChandler\DataStudio\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use RyanChandler\DataStudio\DataStudioPlugin;
 use RyanChandler\DataStudio\Models\Export;
 
 /**
@@ -12,6 +13,6 @@ trait HasExports
 {
     public function exports(): HasMany
     {
-        return $this->hasMany(Export::class, 'owner_id');
+        return $this->hasMany(DataStudioPlugin::get()->getExportModel()::class, 'owner_id');
     }
 }

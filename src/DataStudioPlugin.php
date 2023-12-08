@@ -6,11 +6,14 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Illuminate\Support\Facades\Route;
 use RyanChandler\DataStudio\Http\Controllers\DownloadController;
+use RyanChandler\DataStudio\Models\Export;
 use RyanChandler\DataStudio\Resources\ExportResource;
 
 class DataStudioPlugin implements Plugin
 {
     protected string $ownerModelClass = 'App\\Models\\User';
+
+    protected string $exportModelClass = Export::class;
 
     public function getId(): string
     {
@@ -32,6 +35,21 @@ class DataStudioPlugin implements Plugin
     public function boot(Panel $panel): void
     {
         //
+    }
+
+    /**
+     * @param class-string<Export> $class
+     */
+    public function exportModelClass(string $class): static
+    {
+        $this->exportModelClass = $class;
+
+        return $this;
+    }
+
+    public function getExportModel(): Export
+    {
+        return new $this->exportModelClass;
     }
 
     /**
