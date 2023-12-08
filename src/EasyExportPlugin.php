@@ -35,7 +35,7 @@ class EasyExportPlugin implements Plugin
     }
 
     /**
-     * @param class-string<\Illuminate\Database\Eloquent\Model> $class
+     * @param  class-string<\Illuminate\Database\Eloquent\Model>  $class
      */
     public function ownerModelClass(string $class): static
     {

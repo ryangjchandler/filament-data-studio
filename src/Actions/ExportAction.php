@@ -7,18 +7,13 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard\Step;
 use Filament\Notifications\Actions\Action as NotificationAction;
-
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\ActionSize;
-use Filament\Support\Enums\Alignment;
 use Filament\Tables\Actions\Action as BaseAction;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Filters\BaseFilter;
-use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +24,9 @@ use RyanChandler\EasyExport\Resources\ExportResource;
 
 class ExportAction extends BaseAction
 {
-    protected string | null $disk = null;
+    protected ?string $disk = null;
 
-    protected string | null $directory = null;
+    protected ?string $directory = null;
 
     protected function setUp(): void
     {

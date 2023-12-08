@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Livewire\Livewire;
 use RyanChandler\EasyExport\Models\Export;
 
-use function Livewire\trigger;
-
 class ExportProcessor
 {
     protected Export $export;

@@ -9,7 +9,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\HtmlString;
 use RyanChandler\EasyExport\Models\Export;
 use RyanChandler\EasyExport\Resources\ExportResource\ManageExports;
 use RyanChandler\FilamentProgressColumn\ProgressColumn;

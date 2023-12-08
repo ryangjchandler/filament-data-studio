@@ -2,7 +2,6 @@
 
 namespace RyanChandler\EasyExport\Jobs;
 
-use Filament\Facades\Filament;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Bus\Queueable;
@@ -18,11 +17,14 @@ use Spatie\SimpleExcel\SimpleExcelWriter;
 
 final class ProcessExport implements ShouldQueue
 {
-    use Dispatchable, Queueable, SerializesModels;
+    use Dispatchable;
+    use Queueable;
+    use SerializesModels;
 
     public function __construct(
         private Export $export,
-    ) {}
+    ) {
+    }
 
     public function handle(ExportProcessor $processor)
     {
