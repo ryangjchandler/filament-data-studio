@@ -13,8 +13,6 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\ActionSize;
 use Filament\Tables\Actions\Action as BaseAction;
 use Filament\Tables\Columns\Column;
-use Filament\Tables\Filters\BaseFilter;
-use Filament\Tables\Filters\QueryBuilder;
 use Filament\Tables\Table;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
