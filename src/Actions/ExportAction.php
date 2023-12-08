@@ -14,6 +14,7 @@ use Filament\Support\Enums\ActionSize;
 use Filament\Tables\Actions\Action as BaseAction;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Filters\BaseFilter;
+use Filament\Tables\Filters\QueryBuilder;
 use Filament\Tables\Table;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -38,18 +39,14 @@ class ExportAction extends BaseAction
             CheckboxList::make('columns')
                 ->options($action->getToggleableColumnOptions())
                 ->columns(3),
-            Group::make(function () use ($action) {
-                $filters = $action->getTable()->getFilters();
-
-                return Arr::flatten(Arr::map($filters, fn (BaseFilter $filter) => $filter->getFormSchema()), 1);
-            })
+            Group::make($action->getTable()->getFiltersForm()->getComponents(withHidden: true))
                 ->statePath('filters'),
         ]);
 
         $this->fillForm(function (ExportAction $action, Table $table): array {
             $pluralModelLabel = $table->getPluralModelLabel();
             $columns = array_values(Arr::map($table->getColumns(), fn (Column $column) => $column->getName()));
-            $filters = $table->getFiltersForm()->getState();
+            $filters = $table->getFiltersForm()->getRawState();
 
             return [
                 'name' => $action->getActiveTableTab() ? sprintf('%s (%s) - %s', Str::headline($pluralModelLabel), $action->getActiveTableTabLabel(), now()->format('Y-m-d H:i:s')) : sprintf('%s - %s', Str::headline($pluralModelLabel), now()->format('Y-m-d H:i:s')),
