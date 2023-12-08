@@ -38,7 +38,7 @@ class DataStudioPlugin implements Plugin
     }
 
     /**
-     * @param class-string<Export> $class
+     * @param  class-string<Export>  $class
      */
     public function exportModelClass(string $class): static
     {

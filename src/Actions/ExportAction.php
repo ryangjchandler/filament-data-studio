@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use RyanChandler\DataStudio\DataStudioPlugin;
 use RyanChandler\DataStudio\Jobs\ProcessExport;
-use RyanChandler\DataStudio\Models\Export;
 use RyanChandler\DataStudio\Resources\ExportResource;
 
 class ExportAction extends BaseAction
