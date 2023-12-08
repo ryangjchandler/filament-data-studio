@@ -3,9 +3,11 @@
 namespace RyanChandler\EasyExport;
 
 use Filament\Resources\Pages\ListRecords;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Livewire\Livewire;
 use RyanChandler\EasyExport\Models\Export;
 
@@ -56,6 +58,17 @@ class ExportProcessor
     {
         $column = $this->table->getColumn($column)->record($record);
         $state = $column->getState();
+
+        if ($column instanceof ImageColumn) {
+            $images = Arr::wrap($column->getState());
+            $values = [];
+
+            foreach ($images as $image) {
+                $values[] = $column->getImageUrl($image);
+            }
+
+            return implode(', ', $values);
+        }
 
         if (method_exists($column, 'formatState')) {
             return $column->formatState($state);
