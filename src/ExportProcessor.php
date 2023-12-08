@@ -26,6 +26,7 @@ class ExportProcessor
         $this->export = $export;
 
         $this->page = Livewire::new($export->page_class);
+        $this->page->tableFilters = $export->filters ?? [];
         $this->page->bootedInteractsWithTable();
 
         $this->table = $this->page->getTable();
@@ -67,7 +68,15 @@ class ExportProcessor
 
     public function getQuery(): Builder
     {
-        return $this->page->getFilteredSortedTableQuery();
+        $query = $this->page->getFilteredSortedTableQuery();
+
+        if ($this->export->tab !== null) {
+            $this->page->activeTab = $this->export->tab;
+
+            invade($this->page)->modifyQueryWithActiveTab($query);
+        }
+
+        return $query;
     }
 
     public function getTable(): Table

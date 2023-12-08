@@ -2,7 +2,9 @@
 
 namespace RyanChandler\EasyExport\Resources;
 
+use Filament\Facades\Filament;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,7 +37,13 @@ class ExportResource extends Resource
             ->defaultSort('created_at', 'desc')
             ->modifyQueryUsing(function (Builder $query) {
                 $query->where('owner_id', Auth::id());
-            });
+            })
+            ->actions([
+                Action::make('download')
+                    ->color('success')
+                    ->url(fn (Export $export) => route('filament.' . Filament::getCurrentPanel()->getId() . '.easy-export.download', $export))
+                    ->openUrlInNewTab(),
+            ]);
     }
 
     public static function getPages(): array
@@ -43,5 +51,10 @@ class ExportResource extends Resource
         return [
             'index' => ManageExports::route('/'),
         ];
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
     }
 }
