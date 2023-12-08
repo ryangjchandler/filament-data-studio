@@ -2,10 +2,11 @@
 
 namespace RyanChandler\DataStudio\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use RyanChandler\DataStudio\DataStudioPlugin;
 use RyanChandler\DataStudio\EasyExportPlugin;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Export extends Model
 {
@@ -23,7 +24,7 @@ class Export extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(EasyExportPlugin::get()->getOwnerModelClass(), 'owner_id');
+        return $this->belongsTo(DataStudioPlugin::get()->getOwnerModelClass(), 'owner_id');
     }
 
     public function progress(): Attribute
