@@ -5,50 +5,25 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/ryangjchandler/filament-easy-export/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ryangjchandler/filament-easy-export/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/ryangjchandler/filament-easy-export.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-easy-export)
 
-
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Data Studio provides a zero-configuration export flow for your users. Add a single action to your `Resource` table and get a powerful export configurator ready in seconds.
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
-composer require ryangjchandler/filament-easy-export
+composer require ryangjchandler/filament-data-studio
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-easy-export-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-easy-export-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-easy-export-views"
-```
-
-This is the contents of the published config file:
+Once the package is installed, us the `filament-data-studio:install` command to publish and run migrations.
 
 ```php
-return [
-];
+php artisan filament-data-studio:install
 ```
 
 ## Usage
 
-```php
-$easyExport = new RyanChandler\EasyExport();
-echo $easyExport->echoPhrase('Hello, RyanChandler!');
-```
+Watch [the introduction video]() to learn how Data Studio works.
 
 ## Testing
 
