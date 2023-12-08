@@ -127,7 +127,7 @@ class ExportAction extends BaseAction
         $visible = [];
 
         foreach ($columns as $column) {
-            if (!$column->isToggleable() || ! $column->isToggledHidden()) {
+            if (! $column->isToggleable() || ! $column->isToggledHidden()) {
                 $visible[] = $column->getName();
             }
         }
