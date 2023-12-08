@@ -88,7 +88,7 @@ class ExportAction extends BaseAction
                 ->title('Export started.')
                 ->body(sprintf(<<<'HTML'
                 Export <span class="font-medium">"%s"</span> has started and will be generated in the background.<br>
-                You will receive an email when it is ready to download.
+                You can use the link below to track the progress of your export.
                 HTML, $data['name']))
                 ->duration(7500)
                 ->success()
