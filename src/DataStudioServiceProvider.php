@@ -9,6 +9,7 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Schema;
 use Livewire\Features\SupportTesting\Testable;
 use RyanChandler\DataStudio\Testing\TestsEasyExport;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -27,6 +28,16 @@ class DataStudioServiceProvider extends PackageServiceProvider
             ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
+                    ->startWith(function (InstallCommand $command) {
+                        if (Schema::hasTable('notifications')) {
+                            return;
+                        }
+
+                        $command->warn('This package requires database notifications. Publishing the notifications table migrations now.');
+                        $command->call('notifications:table');
+
+                        $command->warn('Make sure you enable Filament support for database notifications too: https://filamentphp.com/docs/3.x/panels/notifications');
+                    })
                     ->publishMigrations()
                     ->askToRunMigrations();
             });
