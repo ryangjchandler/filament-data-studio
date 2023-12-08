@@ -5,8 +5,6 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/ryangjchandler/filament-easy-export/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ryangjchandler/filament-easy-export/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/ryangjchandler/filament-easy-export.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-easy-export)
 
-Data Studio provides a zero-configuration export flow for your users. Add a single action to your `Resource` table and get a powerful export configurator ready in seconds.
-
 ## Installation
 
 You can install the package via Composer:
