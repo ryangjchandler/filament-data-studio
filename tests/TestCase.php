@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport\Tests;
+namespace RyanChandler\DataStudio\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use RyanChandler\EasyExport\EasyExportServiceProvider;
+use RyanChandler\DataStudio\EasyExportServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -27,7 +27,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'RyanChandler\\EasyExport\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'RyanChandler\\DataStudio\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
@@ -55,10 +55,5 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-easy-export_table.php.stub';
-        $migration->up();
-        */
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport\Actions;
+namespace RyanChandler\DataStudio\Actions;
 
 use Filament\Actions\Action as Action;
 use Filament\Facades\Filament;
@@ -17,9 +17,9 @@ use Filament\Tables\Table;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use RyanChandler\EasyExport\Jobs\ProcessExport;
-use RyanChandler\EasyExport\Models\Export;
-use RyanChandler\EasyExport\Resources\ExportResource;
+use RyanChandler\DataStudio\Jobs\ProcessExport;
+use RyanChandler\DataStudio\Models\Export;
+use RyanChandler\DataStudio\Resources\ExportResource;
 
 class ExportAction extends BaseAction
 {

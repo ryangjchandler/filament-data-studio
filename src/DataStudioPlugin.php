@@ -1,28 +1,28 @@
 <?php
 
-namespace RyanChandler\EasyExport;
+namespace RyanChandler\DataStudio;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Illuminate\Support\Facades\Route;
-use RyanChandler\EasyExport\Http\Controllers\DownloadController;
-use RyanChandler\EasyExport\Resources\ExportResource;
+use RyanChandler\DataStudio\Http\Controllers\DownloadController;
+use RyanChandler\DataStudio\Resources\ExportResource;
 
-class EasyExportPlugin implements Plugin
+class DataStudioPlugin implements Plugin
 {
     protected string $ownerModelClass = 'App\\Models\\User';
 
     public function getId(): string
     {
-        return 'filament-easy-export';
+        return 'filament-data-studio';
     }
 
     public function register(Panel $panel): void
     {
         $panel
             ->authenticatedRoutes(function () {
-                Route::get('/easy-export/{export}/download', DownloadController::class)
-                    ->name('easy-export.download');
+                Route::get('/data-studio/exports/{export}/download', DownloadController::class)
+                    ->name('data-studio.exports.download');
             })
             ->resources([
                 ExportResource::class,

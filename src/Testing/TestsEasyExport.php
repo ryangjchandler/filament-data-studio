@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport\Testing;
+namespace RyanChandler\DataStudio\Testing;
 
 use Livewire\Features\SupportTesting\Testable;
 

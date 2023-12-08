@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport\Jobs;
+namespace RyanChandler\DataStudio\Jobs;
 
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
-use RyanChandler\EasyExport\ExportProcessor;
-use RyanChandler\EasyExport\Models\Export;
+use RyanChandler\DataStudio\ExportProcessor;
+use RyanChandler\DataStudio\Models\Export;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 
 final class ProcessExport implements ShouldQueue
@@ -63,7 +63,7 @@ final class ProcessExport implements ShouldQueue
                 Action::make('download')
                     ->label('Download')
                     ->color('success')
-                    ->url(route('filament.' . $this->export->panel_id . '.easy-export.download', $this->export))
+                    ->url(route('filament.' . $this->export->panel_id . '.data-studio.exports.download', $this->export))
                     ->openUrlInNewTab(),
             ])
             ->sendToDatabase($this->export->owner);

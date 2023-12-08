@@ -1,10 +1,10 @@
 <?php
 
-namespace RyanChandler\EasyExport\Http\Controllers;
+namespace RyanChandler\DataStudio\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use RyanChandler\EasyExport\Models\Export;
+use RyanChandler\DataStudio\Models\Export;
 
 class DownloadController
 {

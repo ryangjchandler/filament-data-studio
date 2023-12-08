@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport;
+namespace RyanChandler\DataStudio;
 
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Columns\ImageColumn;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Livewire\Livewire;
-use RyanChandler\EasyExport\Models\Export;
+use RyanChandler\DataStudio\Models\Export;
 
 class ExportProcessor
 {

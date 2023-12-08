@@ -1,9 +1,9 @@
 <?php
 
-namespace RyanChandler\EasyExport\Models\Concerns;
+namespace RyanChandler\DataStudio\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use RyanChandler\EasyExport\Models\Export;
+use RyanChandler\DataStudio\Models\Export;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Model

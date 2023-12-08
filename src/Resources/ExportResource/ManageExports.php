@@ -1,9 +1,9 @@
 <?php
 
-namespace RyanChandler\EasyExport\Resources\ExportResource;
+namespace RyanChandler\DataStudio\Resources\ExportResource;
 
 use Filament\Resources\Pages\ManageRecords;
-use RyanChandler\EasyExport\Resources\ExportResource;
+use RyanChandler\DataStudio\Resources\ExportResource;
 
 class ManageExports extends ManageRecords
 {

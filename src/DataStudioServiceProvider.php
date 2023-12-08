@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport;
+namespace RyanChandler\DataStudio;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -10,16 +10,16 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
-use RyanChandler\EasyExport\Testing\TestsEasyExport;
+use RyanChandler\DataStudio\Testing\TestsEasyExport;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class EasyExportServiceProvider extends PackageServiceProvider
+class DataStudioServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'filament-easy-export';
+    public static string $name = 'filament-data-studio';
 
-    public static string $viewNamespace = 'easy-export';
+    public static string $viewNamespace = 'data-studio';
 
     public function configurePackage(Package $package): void
     {
@@ -68,8 +68,8 @@ class EasyExportServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/filament-easy-export/{$file->getFilename()}"),
-                ], 'filament-easy-export-stubs');
+                    $file->getRealPath() => base_path("stubs/filament-data-studio/{$file->getFilename()}"),
+                ], 'filament-data-studio-stubs');
             }
         }
 
@@ -79,7 +79,7 @@ class EasyExportServiceProvider extends PackageServiceProvider
 
     protected function getAssetPackageName(): ?string
     {
-        return 'ryangjchandler/filament-easy-export';
+        return 'ryangjchandler/filament-data-studio';
     }
 
     /**
@@ -88,9 +88,9 @@ class EasyExportServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('filament-easy-export', __DIR__ . '/../resources/dist/components/filament-easy-export.js'),
-            // Css::make('filament-easy-export-styles', __DIR__ . '/../resources/dist/filament-easy-export.css'),
-            // Js::make('filament-easy-export-scripts', __DIR__ . '/../resources/dist/filament-easy-export.js'),
+            // AlpineComponent::make('filament-data-studio', __DIR__ . '/../resources/dist/components/filament-data-studio.js'),
+            // Css::make('filament-data-studio-styles', __DIR__ . '/../resources/dist/filament-data-studio.css'),
+            // Js::make('filament-data-studio-scripts', __DIR__ . '/../resources/dist/filament-data-studio.js'),
         ];
     }
 

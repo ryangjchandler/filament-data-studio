@@ -1,6 +1,6 @@
 <?php
 
-namespace RyanChandler\EasyExport\Resources;
+namespace RyanChandler\DataStudio\Resources;
 
 use Filament\Facades\Filament;
 use Filament\Resources\Resource;
@@ -9,15 +9,19 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use RyanChandler\EasyExport\Models\Export;
-use RyanChandler\EasyExport\Resources\ExportResource\ManageExports;
+use RyanChandler\DataStudio\Models\Export;
+use RyanChandler\DataStudio\Resources\ExportResource\ManageExports;
 use RyanChandler\FilamentProgressColumn\ProgressColumn;
 
 class ExportResource extends Resource
 {
     protected static ?string $model = Export::class;
 
-    protected static ?string $path = 'easy-export/exports';
+    protected static ?string $path = 'data-studio/exports';
+
+    protected static ?string $navigationGroup = 'Data Studio';
+
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-down-tray';
 
     public static function table(Table $table): Table
     {
@@ -40,7 +44,7 @@ class ExportResource extends Resource
             ->actions([
                 Action::make('download')
                     ->color('success')
-                    ->url(fn (Export $export) => route('filament.' . Filament::getCurrentPanel()->getId() . '.easy-export.download', $export))
+                    ->url(fn (Export $export) => route('filament.' . Filament::getCurrentPanel()->getId() . '.data-studio.exports.download', $export))
                     ->openUrlInNewTab(),
             ]);
     }
@@ -50,10 +54,5 @@ class ExportResource extends Resource
         return [
             'index' => ManageExports::route('/'),
         ];
-    }
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return false;
     }
 }

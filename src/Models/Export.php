@@ -1,11 +1,11 @@
 <?php
 
-namespace RyanChandler\EasyExport\Models;
+namespace RyanChandler\DataStudio\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use RyanChandler\EasyExport\EasyExportPlugin;
+use RyanChandler\DataStudio\EasyExportPlugin;
 
 class Export extends Model
 {

@@ -1,15 +1,17 @@
 {
-    "name": "ryangjchandler/filament-easy-export",
+    "name": "ryangjchandler/filament-data-studio",
     "description": "Zero configuration CSV exports for your Filament resources.",
     "keywords": [
         "ryangjchandler",
         "laravel",
-        "filament-easy-export"
+        "filament-easy-export",
+        "filament-data-studio",
+        "data-studio"
     ],
-    "homepage": "https://github.com/ryangjchandler/filament-easy-export",
+    "homepage": "https://github.com/ryangjchandler/filament-data-studio",
     "support": {
-        "issues": "https://github.com/ryangjchandler/filament-easy-export/issues",
-        "source": "https://github.com/ryangjchandler/filament-easy-export"
+        "issues": "https://github.com/ryangjchandler/filament-data-studio/issues",
+        "source": "https://github.com/ryangjchandler/filament-data-studio"
     },
     "license": "MIT",
     "authors": [
@@ -42,13 +44,13 @@
     },
     "autoload": {
         "psr-4": {
-            "RyanChandler\\EasyExport\\": "src/",
-            "RyanChandler\\EasyExport\\Database\\Factories\\": "database/factories/"
+            "RyanChandler\\DataStudio\\": "src/",
+            "RyanChandler\\DataStudio\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "RyanChandler\\EasyExport\\Tests\\": "tests/"
+            "RyanChandler\\DataStudio\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -68,11 +70,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "RyanChandler\\EasyExport\\EasyExportServiceProvider"
-            ],
-            "aliases": {
-                "EasyExport": "RyanChandler\\EasyExport\\Facades\\EasyExport"
-            }
+                "RyanChandler\\DataStudio\\DataStudioServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
